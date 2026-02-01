@@ -1,1 +1,45 @@
-
+<!doctype html>
+<html lang='ja'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'>
+  <title>つついアプリ｜国税庁ページ検索</title>
+  <link rel='manifest' href='./manifest.webmanifest'>
+  <meta name='theme-color' content='#0f2a45'>
+  <link rel='apple-touch-icon' href='./assets/icons/apple-touch-icon.png'>
+  <link rel='stylesheet' href='./style.css'>
+  <script defer src='./main.js'></script>
+</head>
+<body>
+  <header class='app-header'>
+    <h1>つついアプリ</h1>
+    <p class='subtitle'>国税庁ページ & e‑Gov 法令検索</p>
+  </header>
+  <main>
+    <section class='search-box'>
+      <input id='q' type='search' inputmode='search' placeholder='キーワードを入力（例：医療費控除）' autocomplete='off' />
+      <button id='btnSearch' aria-label='検索'>検索</button>
+    </section>
+    <nav class='tabs' role='tablist' aria-label='検索対象の切替'>
+      <button class='tab active' data-tab='ta' role='tab' aria-selected='true'>① タックスアンサー</button>
+      <button class='tab' data-tab='nta' role='tab' aria-selected='false'>国税庁サイト</button>
+      <button class='tab' data-tab='laws' role='tab' aria-selected='false'>法令（e‑Gov）</button>
+    </nav>
+    <section id='results' class='results' aria-live='polite'></section>
+    <section class='bookmarks'>
+      <h2>ブックマーク</h2>
+      <ul id='bmList' class='bm-list'></ul>
+    </section>
+  </main>
+  <footer class='footer'>
+    <small>© 2026 つついアプリ — 情報は国税庁/デジタル庁の公開ページ・APIに基づき表示します。</small>
+  </footer>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', ()=>{
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    });
+  }
+  </script>
+</body>
+</html>
